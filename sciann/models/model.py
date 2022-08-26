@@ -482,7 +482,8 @@ class SciModel(object):
 
         if isinstance(self._model.optimizer, GradientObserver):
             opt = ScipyOptimizer(self._model)
-            opt_fit_func = opt.fit
+            opt_fit_func = opt.fit(epoch = 50000)
+            
         else:
             opt_fit_func = self._model.fit
 
