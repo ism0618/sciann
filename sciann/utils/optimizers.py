@@ -22,7 +22,7 @@ class GradientObserver(OptimizerV2):
     each mini batch. Gradients are then read at the end of the epoch by the ScipyOptimizer. 
     """
 
-    def __init__(self, learning_rate=0.0002, method='L-BFGS-B', **kwargs):
+    def __init__(self, learning_rate=0.00002, method='L-BFGS-B', **kwargs):
         super(GradientObserver, self).__init__()
         self._learning_rate = tf_variable.Variable(kwargs.get('lr', learning_rate), 'float32')
         self._method = method.lower().split("scipy-")[-1]
