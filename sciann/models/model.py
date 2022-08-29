@@ -469,10 +469,10 @@ class SciModel(object):
                     )
                 else:
                     self._model.save_weights("{}-start.hdf5".format(save_weights_path))
-                    model_file_path = save_weights_path + "-{epoch:05d}-{loss:.3e}.hdf5"
+                    model_file_path = save_weights_path + "-{epoch:05d}.hdf5"
                     model_check_point = k.callbacks.ModelCheckpoint(
                         model_file_path, monitor='loss', save_weights_only=True, mode='auto',
-                        period=10 if 'freq' in save_weights.keys() else save_weights['freq'],
+                        period=5 if 'freq' in save_weights.keys() else save_weights['freq'],
                         save_best_only=False
                     )
             except:
@@ -483,7 +483,6 @@ class SciModel(object):
         if isinstance(self._model.optimizer, GradientObserver):
             opt = ScipyOptimizer(self._model)
             opt_fit_func = opt.fit
-            opt_fit_func.epoch = 50000;
             
         else:
             opt_fit_func = self._model.fit
